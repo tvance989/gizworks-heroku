@@ -1,4 +1,4 @@
-var express = require('express')
+var express = require('express');
 var app = express();
 var pg = require('pg');
 
@@ -7,7 +7,7 @@ app.set('port', (process.env.PORT || 5000));
 app.get('/db', function (request, response) {
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         console.log(process.env.DATABASE_URL);
-        client.query('SELECT * FROM test_table', function(err, result) {
+        client.query('SELECT * FROM projects', function(err, result) {
             done();
             if (err) {
                 console.error(err);
@@ -21,5 +21,6 @@ app.get('/db', function (request, response) {
 
 app.get('/', function(request, response) {
     app.listen(app.get('port'), function() {
-        console.log("Node app is running at localhost:" + app.get('port'))
+        console.log("Node app is running at localhost:" + app.get('port'));
     });
+});
